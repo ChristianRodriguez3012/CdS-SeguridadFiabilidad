@@ -1,0 +1,39 @@
+PARA LOGIN (SOLICITUD POST)
+
+USUARIO AUTENTICADO CON EXITO:
+curl -k -X POST -d "user=usuario1&password=contraseña1" https://localhost:5000/login
+
+USUARIO AUTENTICADO SIN EXITO:
+curl -k -X POST -d "user=usuario_inexistente&password=contraseña_incorrecta" https://localhost:5000/login
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+PARA ENCRYPT (SOLICITUD POST)
+
+ENCRIPTA DATOS CORRECTAMENTE:
+curl -k -X POST -d "data=datos_a_encriptar" https://localhost:5000/encrypt
+
+SIN DATOS PARA REALIZAR LA ENCRIPTACION, DEVUELVE ERROR:
+curl -k -X POST https://localhost:5000/encrypt
+
+DECRYPT:
+DESENCRIPTA DATOS CORRECTAMENTE, PREVIAMENTE ALMACENADOS:
+
+curl -k -X POST -d "encrypted_data=_DATA_&key=_KEY_&nonce=_NONCE_" https://localhost:5000/decrypt
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+PARA TEST (SOLICITUD POST)
+
+PRUEBA DE PENETRACIÓN EXITOSA:
+curl -k -X POST -d "data=test data" https://localhost:5000/test
+
+PRUEBA DE PENETRACIÓN CON INYECCIÓN SQL:
+curl -k -X POST -d "data=DROP TABLE users" https://localhost:5000/test
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+PARA LOGOUT (SOLICITUD GET)
+
+CERRAR SESIÓN CON ÉXITO:
+curl -k -X GET https://localhost:5000/logout
